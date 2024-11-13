@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 
 import {connectDb}from './db/index';
 
+import userRoutes from './routes/user.route';
+
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -19,6 +21,8 @@ app.use(cors());
 
 
 const port = process.env.PORT || 8000;
+
+app.use('/api', userRoutes);
 
 connectDb().then(() => {
     app.listen(port, () => {
